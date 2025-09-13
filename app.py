@@ -11,23 +11,38 @@ try:
     with open(SCOREBOARD_FILE, "r") as f:
         scoreboard = json.load(f)
 except:
-    scoreboard = {"red": 0, "blue": 0}
+    scoreboard = scoreboard = {"red": [], "blue": []}
 
-# Join route
-@app.route("/join", methods=["GET"])
+
+@app.route("/join", methods=["GET", "POST"])
 def join():
-    team = random.choice(["red", "blue"])
-    return render_template("join.html", team=team)
+    if request.method == "POST":
+        name = request.form.get("name")
+        team = request.form.get("team")  # or random.choice(["red", "blue"])
+        scoreboard[team].append({"name": name, "score": 0})
+        with open(SCOREBOARD_FILE, "w") as f:
+            json.dump(scoreboard, f)
+        return redirect(url_for("leaderboard"))
+    return render_template("join.html")
 
-# Submit action (attack/defense)
+#submit
 @app.route("/submit", methods=["POST"])
 def submit():
+    name = request.form.get("name")
     team = request.form.get("team")
     points = int(request.form.get("points", 1))
-    scoreboard[team] += points
+    
+    # Find the player in the team list and add points
+    for player in scoreboard[team]:
+        if player["name"] == name:
+            player["score"] += points
+            break
+
     with open(SCOREBOARD_FILE, "w") as f:
         json.dump(scoreboard, f)
+    
     return redirect(url_for("leaderboard"))
+
 
 # Leaderboard
 @app.route("/leaderboard")

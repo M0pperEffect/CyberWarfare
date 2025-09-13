@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaderboard</title>
+</head>
+<body>
+    <h1>Leaderboard</h1>
+
+    <h2>Red Team</h2>
+    <ul>
+        {% for player in scoreboard['red'] %}
+            <li>{{ player.name }}: {{ player.score }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Blue Team</h2>
+    <ul>
+        {% for player in scoreboard['blue'] %}
+            <li>{{ player.name }}: {{ player.score }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+</html>

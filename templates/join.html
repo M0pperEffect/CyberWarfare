@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Join Team</title>
+    <title>Join a Team</title>
 </head>
 <body>
-    <h2>You joined the {{ team | capitalize }} Team!</h2>
-    <form action="/submit" method="post">
-        <input type="hidden" name="team" value="{{ team }}">
-        <button type="submit" name="points" value="1">Score 1 Point</button>
+    <h1>Join a Team</h1>
+    <form method="POST">
+        Name: <input type="text" name="name" required><br>
+        Team:
+        <select name="team">
+            <option value="red">Red</option>
+            <option value="blue">Blue</option>
+        </select><br>
+        <button type="submit">Join</button>
     </form>
 </body>
 </html>
