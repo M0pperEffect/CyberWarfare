@@ -1,4 +1,3 @@
-Awesome! Let’s make a **clear, concise, and submission-ready README**. Here’s a solid 
 ---
 
 ````markdown
