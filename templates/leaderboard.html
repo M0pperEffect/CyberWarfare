@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>Leaderboard</title>
 </head>
 <body>
@@ -12,7 +11,7 @@
     <ul>
         {% if scoreboard['red'] %}
             {% for player in scoreboard['red'] %}
-                <li>{{ player.name }}: {{ player.score }}</li>
+                <li class="red">{{ player.name }}: {{ player.score }}</li>
             {% endfor %}
         {% else %}
             <li>No players yet</li>
@@ -23,7 +22,7 @@
     <ul>
         {% if scoreboard['blue'] %}
             {% for player in scoreboard['blue'] %}
-                <li>{{ player.name }}: {{ player.score }}</li>
+                <li class="blue">{{ player.name }}: {{ player.score }}</li>
             {% endfor %}
         {% else %}
             <li>No players yet</li>

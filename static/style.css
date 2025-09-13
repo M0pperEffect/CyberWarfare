@@ -5,6 +5,10 @@ body {
     text-align: center;
 }
 
+.red { color: red; }
+.blue { color: blue; }
+
+
 h1 {
     color: #ffffff;
     margin-bottom: 20px;
@@ -14,22 +18,19 @@ h2 {
     margin-top: 30px;
 }
 
-.red-team {
-    color: #ff4c4c;
-}
-
-.blue-team {
-    color: #4c9dff;
-}
-
 ul {
     list-style-type: none;
     padding: 0;
 }
 
 li {
-    background-color: #2c2c2c;
-    margin: 5px;
-    padding: 10px;
-    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    width: 200px;  /* or whatever fits */
+    margin: 5px auto;
 }
+li:hover {
+    background-color: #2a2a2a;
+    cursor: pointer;
+}
+
