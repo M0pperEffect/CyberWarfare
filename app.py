@@ -28,21 +28,28 @@ def join():
 #submit
 @app.route("/submit", methods=["POST"])
 def submit():
-    name = request.form.get("name")
-    points = int(request.form.get("points", 1))
     team = request.form.get("team")
+    player_name = request.form.get("player")
+    points = int(request.form.get("points", 1))
 
-    # find the player in the team
+    # Validate team exists
+    if team not in scoreboard:
+        return "Invalid team!", 400
+
+    # Find the player in the team
     for player in scoreboard[team]:
-        if player["name"] == name:
+        if player["name"] == player_name:
             player["score"] += points
             break
+    else:
+        # Player not found
+        return "Player not found!", 400
 
+    # Save updated scoreboard
     with open(SCOREBOARD_FILE, "w") as f:
         json.dump(scoreboard, f)
 
     return redirect(url_for("leaderboard"))
-
 
 
 # Leaderboard

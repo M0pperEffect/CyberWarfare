@@ -11,7 +11,14 @@
     <ul>
         {% if scoreboard['red'] %}
             {% for player in scoreboard['red'] %}
-                <li class="red">{{ player.name }}: {{ player.score }}</li>
+                <li class="red">
+                    {{ player.name }}: {{ player.score }}
+                    <form action="{{ url_for('submit') }}" method="post" style="display:inline">
+                        <input type="hidden" name="team" value="red">
+                        <input type="hidden" name="player" value="{{ player.name }}">
+                        <button type="submit">+1</button>
+                    </form>
+                </li>
             {% endfor %}
         {% else %}
             <li>No players yet</li>
@@ -22,7 +29,14 @@
     <ul>
         {% if scoreboard['blue'] %}
             {% for player in scoreboard['blue'] %}
-                <li class="blue">{{ player.name }}: {{ player.score }}</li>
+                <li class="blue">
+                    {{ player.name }}: {{ player.score }}
+                    <form action="{{ url_for('submit') }}" method="post" style="display:inline">
+                        <input type="hidden" name="team" value="blue">
+                        <input type="hidden" name="player" value="{{ player.name }}">
+                        <button type="submit">+1</button>
+                    </form>
+                </li>
             {% endfor %}
         {% else %}
             <li>No players yet</li>
@@ -32,3 +46,4 @@
     <a href="{{ url_for('index') }}">Back to Home</a>
 </body>
 </html>
+    
