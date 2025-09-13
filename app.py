@@ -29,10 +29,10 @@ def join():
 @app.route("/submit", methods=["POST"])
 def submit():
     name = request.form.get("name")
-    team = request.form.get("team")
     points = int(request.form.get("points", 1))
-    
-    # Find the player in the team list and add points
+    team = request.form.get("team")
+
+    # find the player in the team
     for player in scoreboard[team]:
         if player["name"] == name:
             player["score"] += points
@@ -40,8 +40,9 @@ def submit():
 
     with open(SCOREBOARD_FILE, "w") as f:
         json.dump(scoreboard, f)
-    
+
     return redirect(url_for("leaderboard"))
+
 
 
 # Leaderboard
