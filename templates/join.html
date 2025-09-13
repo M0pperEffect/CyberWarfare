@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Join Team</title>
+</head>
+<body>
+    <h2>You joined the {{ team | capitalize }} Team!</h2>
+    <form action="/submit" method="post">
+        <input type="hidden" name="team" value="{{ team }}">
+        <button type="submit" name="points" value="1">Score 1 Point</button>
+    </form>
+</body>
+</html>
